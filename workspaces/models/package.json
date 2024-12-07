@@ -1,0 +1,10 @@
+{
+  "name": "liteflix-models",
+  "version": "1.0.0",
+  "description": "TS models for LITEFLIX challenge",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "liteflix-api",
+  "version": "1.0.0",
+  "description": "API for LITEFLIX challenge",
+  "main": "index.js",
+  "author": "Jeremias García País",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
