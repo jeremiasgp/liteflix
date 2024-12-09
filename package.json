@@ -1,8 +1,11 @@
 {
   "private": true,
   "workspaces": [
-    "web",
-    "api",
-    "models"
-  ]
+    "workspaces/web",
+    "workspaces/api",
+    "workspaces/models"
+  ],
+  "scripts": {
+    "start-api": "yarn workspace liteflix-api start"
+  }
 }

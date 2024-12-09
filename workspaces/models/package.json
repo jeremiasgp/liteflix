@@ -2,9 +2,12 @@
   "name": "liteflix-models",
   "version": "1.0.0",
   "description": "TS models for LITEFLIX challenge",
-  "main": "index.js",
+  "main": "./src/index.d.ts",
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "build": "tsc"
   }
 }
