@@ -6,6 +6,7 @@
     "workspaces/models"
   ],
   "scripts": {
-    "start-api": "yarn workspace liteflix-api start"
+    "start-api": "yarn workspace liteflix-api start",
+    "start-web": "yarn workspace web dev"
   }
 }
