@@ -1,0 +1,36 @@
+.Movies {
+  &__wrapper {
+    @apply w-[220px] h-[694px] block;
+  }
+  &__selector {
+    @apply block relative mb-[32px] h-[18px] text-[16px] leading-[16px] font-[400] tracking-[4px] text-center cursor-pointer;
+  }
+  &__popup {
+    @apply absolute top-[20px] left-[-10.5px];
+    &-wrapper {
+      @apply w-[241px] bg-[#242424] flex flex-col gap-[16px] items-start relative box-border px-[24px] py-[30px] mt-[6px] z-[10];
+      &::before {
+        content: '';
+        @apply w-[12px] h-[12px] block absolute bg-[#242424] rotate-45 top-[-6px] right-[24px];
+      }
+      li {
+        @apply w-full flex items-center justify-between text-[16px] leading-[16px] tracking-[4px] cursor-pointer;
+      }
+    }
+    
+  }
+  &__items {
+    @apply flex flex-col gap-[20px] justify-stretch;
+  }
+  &__item {
+    @apply h-[146px] flex items-center justify-center relative bg-cover cursor-pointer;
+
+    &-play {
+      @apply w-[40px] h-[40px] flex items-center justify-center box-border border border-white rounded-[50%] bg-[#242424]/[.5];
+    }
+
+    &-title {
+      @apply absolute block w-full bottom-[14px] text-[16px] leading-[16px] tracking-[4px] font-[400] text-center;
+    }
+  }
+}
