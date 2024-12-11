@@ -1,5 +1,7 @@
 import React from "react";
 import PlusIcon from "../icons/Plus.icon";
+import HamburgerIcon from "../icons/Hamburger.icon";
+import NotificationIcon from "../icons/Notification.icon";
 
 type Props = {
   bgImage?: string,
@@ -16,10 +18,10 @@ const Layout = ({bgImage, children}: Props) => {
       <h1 className="text-[34px] leading[34px] tracking-[4px] font-[400] text-[#64EEBC]"><span className="!font-[700]">LITE</span>FLIX</h1>
       <button className="text-[18px] leading[18px] tracking-[4px] font-[400] flex items-center"><PlusIcon /><span className="inline-block ml-[12px]">Agregar pelicula</span></button>
     </section>
-    <div aria-name="UserActions" className="flex justify-end">
-      <span>1</span>
-      <span>2</span>
-      <span>3</span>
+    <div aria-name="UserActions" className="flex justify-end gap-[40px]">
+      <span className="cursor-pointer inline-block"><HamburgerIcon /></span>
+      <span className="cursor-pointer inline-block"><NotificationIcon /></span>
+      <span className="cursor-pointer inline-block"><img src="assets/profile.png" alt="Perfil" width={40} height={40} /></span>
     </div>
   </header>
     <main role='main'>
