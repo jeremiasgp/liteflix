@@ -1,0 +1,23 @@
+.FeaturedMovie {
+  &__wrapper {
+    @apply self-end;
+  }
+  &__original {
+    @apply block mb-[24px] text-[20px] leading-[24px] tracking-[4px] font-[400];
+  }
+  &__title {
+    @apply block mb-[32px] text-[120px] leading-[100px] tracking-[16px] font-[700] text-[#64EEBC];
+  }
+  &__actions {
+    @apply flex justify-start gap-[24px];
+  }
+}
+
+.btn {
+  &__play {
+    @apply w-[248px] h-[56px] flex justify-center items-center bg-[#242424] border border-[#242424] text-white text-[18px] font-[400] tracking-[4px] leading-[21.6px];
+  }
+  &__my-list {
+    @apply w-[248px] h-[56px] flex justify-center items-center bg-[#242424]/[.5] border border-white/[.5] text-white text-[18px] font-[400] tracking-[4px] leading-[21.6px];
+  }
+}

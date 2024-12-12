@@ -1,0 +1,26 @@
+.Layout {
+  &__wrapper {
+    @apply w-screen h-screen;
+  }
+  &__container {
+    @apply container h-screen mx-auto pt-[32px];
+  }
+  &__header {
+    @apply w-full h-[40px] flex justify-between items-center;
+    &-actions {
+      @apply w-[367px] flex justify-between;
+    }
+  }
+  &__logo {
+    @apply text-[34px] leading-[34px] tracking-[4px] font-[400] text-[#64EEBC];
+  }
+  &__add-movie {
+    @apply text-[18px] leading-[18px] tracking-[4px] font-[400] flex items-center;
+  }
+  &__user-actions {
+    @apply flex justify-end gap-[40px];
+  }
+  &__user-action {
+    @apply cursor-pointer inline-block;
+  }
+}

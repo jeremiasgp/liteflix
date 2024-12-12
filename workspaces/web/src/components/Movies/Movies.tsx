@@ -13,10 +13,10 @@ enum MOVIE_OPTIONS {
 const Movies = () => {
   const [showMovies, setShowMovies] = useState<MOVIE_OPTIONS>(1);
   const [showOptionsPopup, setShowOptionsPopup] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<any>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target)) {
         setShowOptionsPopup(false);
       }

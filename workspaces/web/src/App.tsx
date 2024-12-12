@@ -12,8 +12,8 @@ function App() {
   }
 
   return <Layout bgImage={bgImage}>
-    <div className="flex items-center" style={{ height: 'calc(100vh - 80px)'}}>
-      <div className="w-full flex items-stretch justify-between">
+    <div className="App__main-wrapper">
+      <div className="App__main-content">
         <FeaturedMovie />
         <Movies />
       </div>
@@ -21,4 +21,4 @@ function App() {
   </Layout>
 }
 
-export default App
+export default App;
