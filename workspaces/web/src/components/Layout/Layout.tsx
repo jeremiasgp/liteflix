@@ -3,6 +3,7 @@ import PlusIcon from "../icons/Plus.icon";
 import HamburgerIcon from "../icons/Hamburger.icon";
 import NotificationIcon from "../icons/Notification.icon";
 import './Layout.css';
+import AddMovieModal from "../AddMovieModal/AddMovieModal";
 
 type Props = {
   bgImage?: string,
@@ -27,6 +28,7 @@ const Layout = ({bgImage, children}: Props) => {
   </header>
     <main role='main'>
       {children}
+      { false && <AddMovieModal />}
     </main>
   </div>
 </div>
