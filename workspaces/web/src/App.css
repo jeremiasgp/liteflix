@@ -1,11 +1,11 @@
 .App {
   &__main {
     &-wrapper {
-      @apply flex items-center;
+      @apply flex items-center max-sm:!h-auto;
       height: calc(100vh - 80px);
     }
     &-content {
-      @apply w-full flex items-stretch justify-between;
+      @apply w-full flex items-center max-sm:flex-col sm:items-stretch sm:justify-between;
     }
   }
 }

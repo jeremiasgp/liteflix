@@ -12,7 +12,7 @@ const AddMovieModal = () => {
       <label className="Add-movie__file-label">
         <ClipIcon />
         <span className="Add-movie__file-text">
-          AGREGÁ UN ARCHIVO O ARRASTRALO Y SOLTALO AQUÍ
+          AGREGÁ UN ARCHIVO <span className="max-sm:hidden">O ARRASTRALO Y SOLTALO AQUÍ</span>
         </span>
         <input type="file" name="file" className="Add-movie__file-input" />
       </label>
@@ -20,6 +20,7 @@ const AddMovieModal = () => {
       <input placeholder="TÍTULO" className="Add-movie__title-input" name="title" />
       </label>
       <button type="submit" className="btn__add-movie">SUBIR PELÍCULA</button>
+      <button type="button" className="btn__close-modal">SALIR</button>
     </form>
   </div>
 }

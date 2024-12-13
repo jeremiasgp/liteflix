@@ -1,15 +1,17 @@
 .FeaturedMovie {
   &__wrapper {
-    @apply self-end;
+    @apply self-end sm:!min-h-1 max-sm:max-w-[100%] max-sm:flex max-sm:flex-col max-sm:items-center max-sm:justify-end max-sm:pb-[64px];
+    @apply max-sm:bg-gradient-to-b max-sm:from-[#242424]/[0] max-sm:from-45% max-sm:to-[#242424] max-sm:to-75% max-sm:mx-[-24px] max-sm:px-[24px] max-sm:box-content;
+    min-height: calc(100vh - 52px - 64px);
   }
   &__original {
-    @apply block mb-[24px] text-[20px] leading-[24px] tracking-[4px] font-[400];
+    @apply block mb-[16px] sm:mb-[24px] text-[20px] leading-[20px] sm:leading-[24px] tracking-[4px] font-[400];
   }
   &__title {
-    @apply block mb-[32px] text-[120px] leading-[100px] tracking-[16px] font-[700] text-[#64EEBC];
+    @apply block mb-[16px] sm:mb-[32px] text-[76px] leading-[77.5px] tracking-[12px] sm:text-[120px] sm:leading-[100px] sm:tracking-[16px] font-[700] text-[#64EEBC] max-sm:text-center;
   }
   &__actions {
-    @apply flex justify-start gap-[24px];
+    @apply flex max-sm:flex-col max-sm:items-center justify-start gap-[24px];
   }
 }
 

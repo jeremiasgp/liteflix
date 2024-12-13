@@ -11,24 +11,25 @@ type Props = {
 };
 
 const Layout = ({bgImage, children}: Props) => {
-  const bgMovieClasses = bgImage ? `bg-cover bg-[url('https://image.tmdb.org/t/p/original/euYIwmwkmz95mnXvufEmbL6ovhZ.jpg')]` : '';
+  const bgMovieClasses = bgImage ? `bg-no-repeat bg-[length:auto_80vh] bg-[center_top] sm:bg-cover bg-[url('https://image.tmdb.org/t/p/original/uLqNGzJwnj8JKkKuRM2dHWJKCtc.jpg')]` : '';
 
   return <div className={`Layout__wrapper ${bgMovieClasses}`}>
   <div className='Layout__container'>
   <header className="Layout__header">
     <section className="Layout__header-actions">
-      <h1 tabIndex={0} className="Layout__logo"><span className="!font-[700]">LITE</span>FLIX</h1>
-      <button className="Layout__add-movie"><PlusIcon /><span className="inline-block ml-[12px]">Agregar pelicula</span></button>
+      <h1 tabIndex={0} className="Layout__logo max-sm:order-2 max-sm:relative max-sm:z-[101]"><span className="!font-[700]">LITE</span>FLIX</h1>
+      <button className="Layout__add-movie max-sm:order-1"><PlusIcon /><span className="inline-block ml-[12px] hidden sm:inline-block">Agregar pelicula</span></button>
+      <div className="Layout__user-actions max-sm:order-last">
+        <span tabIndex={0} className="Layout__user-action Layout__user-action--hidden-mobile"><HamburgerIcon /></span>
+        <span tabIndex={0} className="Layout__user-action Layout__user-action--hidden-mobile"><NotificationIcon /></span>
+        <span tabIndex={0} className="Layout__user-action max-sm:relative max-sm:z-[101]"><img src="assets/profile.png" alt="Perfil" className="max-sm:w-[36px] max-sm:h-[36px] w-[40px] h-[40px]" /></span>
+      </div>
     </section>
-    <div className="Layout__user-actions">
-      <span tabIndex={0} className="Layout__user-action"><HamburgerIcon /></span>
-      <span tabIndex={0} className="Layout__user-action"><NotificationIcon /></span>
-      <span tabIndex={0} className="Layout__user-action"><img src="assets/profile.png" alt="Perfil" width={40} height={40} /></span>
-    </div>
+    
   </header>
     <main role='main'>
       {children}
-      { false && <AddMovieModal />}
+      { true && <AddMovieModal />}
     </main>
   </div>
 </div>

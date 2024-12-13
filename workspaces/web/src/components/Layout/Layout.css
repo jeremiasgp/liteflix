@@ -1,26 +1,31 @@
 .Layout {
   &__wrapper {
-    @apply w-screen h-screen;
+    @apply w-screen h-screen max-sm:max-w-max;
   }
   &__container {
-    @apply container h-screen mx-auto pt-[32px];
+    @apply container sm:h-screen mx-auto pt-[16px] max-sm:pb-[16px] sm:pt-[32px] px-[24px] sm:px-[0];
   }
   &__header {
-    @apply w-full h-[40px] flex justify-between items-center;
+    @apply w-full h-[36px] sm:h-[40px] flex justify-between items-center;
     &-actions {
-      @apply w-[367px] flex justify-between;
+      @apply w-full flex justify-between;
     }
   }
   &__logo {
-    @apply text-[34px] leading-[34px] tracking-[4px] font-[400] text-[#64EEBC];
+    @apply text-[34px] leading-[34px] tracking-[4px] font-[400] text-[#64EEBC] sm:grow-0 sm:shrink-0;
   }
   &__add-movie {
     @apply text-[18px] leading-[18px] tracking-[4px] font-[400] flex items-center;
+    @apply max-sm:border max-sm:border-[#fff] max-sm:rounded-[50%] max-sm:w-[36px] max-sm:h-[36px] max-sm:flex max-sm:items-center max-sm:justify-center;
+    @apply sm:grow-0 sm:shrink-0 sm:ml-[64px];
   }
   &__user-actions {
-    @apply flex justify-end gap-[40px];
+    @apply flex justify-end gap-[40px] sm:w-full sm:grow sm:shrink;
   }
   &__user-action {
     @apply cursor-pointer inline-block;
+    &--hidden-mobile {
+      @apply  max-sm:hidden;
+    }
   }
 }
