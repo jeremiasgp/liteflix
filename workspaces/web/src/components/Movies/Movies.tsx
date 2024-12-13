@@ -3,6 +3,9 @@ import PlayIcon from "../icons/Play.icon";
 import ArrowIcon from "../icons/Arrow.icon";
 import './Movies.css';
 import TickIcon from "../icons/Tick.icon";
+import { useLiteflixContext } from "../../context/context";
+import { Movie } from "liteflix-models";
+import AsyncBg from "../AsyncBg/AsyncBg";
 
 enum MOVIE_OPTIONS {
   '',
@@ -13,6 +16,7 @@ enum MOVIE_OPTIONS {
 const Movies = () => {
   const [showMovies, setShowMovies] = useState<MOVIE_OPTIONS>(1);
   const [showOptionsPopup, setShowOptionsPopup] = useState(false);
+  const { popular } = useLiteflixContext();
   const ref = useRef<any>(null);
 
   useEffect(() => {
@@ -44,32 +48,16 @@ const Movies = () => {
         </ul>
       </div>}
     </div>
-    <ul className="Movies__items">
-      <li className={`Movies__item bg-[url('https://image.tmdb.org/t/p/w500/uQhYBxOVFU6s9agD49FnGHwJqG5.jpg')]`}>
-        <div className="Movies__item-play">
-          <PlayIcon />
-        </div>
-        <span className="Movies__item-title">MOVIE</span>
-      </li>
-      <li className={`Movies__item bg-[url('https://image.tmdb.org/t/p/w500/f8H9sLin46B7ka4DEqjemGuiCOB.jpg')]`}>
-      <div className="Movies__item-play">
-          <PlayIcon />
-        </div>
-        <span className="Movies__item-title">MOVIE</span>
-      </li>
-      <li className={`Movies__item bg-[url('https://image.tmdb.org/t/p/w500/cNtAslrDhk1i3IOZ16vF7df6lMy.jpg')]`}>
-      <div className="Movies__item-play">
-          <PlayIcon />
-        </div>
-        <span className="Movies__item-title">MOVIE</span>
-      </li>
-      <li className={`Movies__item bg-[url('https://image.tmdb.org/t/p/w500/4rBObJFpiWJOG7aIlRrOUniAkBs.jpg')]`}>
-      <div className="Movies__item-play">
-          <PlayIcon />
-        </div>
-        <span className="Movies__item-title">MOVIE</span>
-      </li>
-    </ul>
+    <div className="Movies__items">
+      {popular.map(({ backdrop_path, id, title }: Movie) => {
+        return <AsyncBg key={id} className="Movies__item" bgUrl={backdrop_path}>
+          <div tabIndex={0} className="Movies__item-play">
+            <PlayIcon />
+          </div>
+          <span className="Movies__item-title">{title}</span>
+        </AsyncBg>;
+      })}
+    </div>
   </aside>
 }
 
