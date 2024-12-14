@@ -6,7 +6,9 @@
   "author": "Jeremias García País",
   "license": "MIT",
   "dependencies": {
+    "@types/cors": "^2.8.17",
     "@types/multer": "^1.4.12",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "liteflix-models": "1.0.0"
   },

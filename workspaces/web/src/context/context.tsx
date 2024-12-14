@@ -1,16 +1,18 @@
 import { Movie } from 'liteflix-models';
 import { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosProgressEvent } from 'axios';
+
+type NewMovieRequestPayload = { picture: File, title: string };
 
 type LiteflixContextModel = {
   featured: Movie | null,
   popular: Array<Movie>,
   userMovies: Array<Movie>,
-  addNewMovie: (movie: Array<Movie>) => void
   isLoading: boolean,
   setIsLoading: (loading: boolean) => void,
   showNewMovieModal: boolean,
   setShowNewMovieModal: (show: boolean) => void,
+  saveUserMovie: (movie: NewMovieRequestPayload, uploadProgress: (n: number) => void, onErrorHandler: () => void) => void
 }
 
 const initialCOntextValues: LiteflixContextModel = {
@@ -19,20 +21,41 @@ const initialCOntextValues: LiteflixContextModel = {
   isLoading: false,
   userMovies: [],
   showNewMovieModal: false,
-  setShowNewMovieModal: (show: boolean) => undefined,
-  addNewMovie: (movies: Array<Movie>) => undefined,
-  setIsLoading: (loading: boolean) => undefined
+  saveUserMovie: (movie: NewMovieRequestPayload, uploadProgress: (n: number) => void, onErrorHandler: () => void) => console.info(movie, uploadProgress, onErrorHandler),
+  setShowNewMovieModal: (show: boolean) => console.info(show),
+  setIsLoading: (loading: boolean) => console.info(loading)
 };
 
 const LiteflixContext = createContext<LiteflixContextModel>(initialCOntextValues);
 
 
 export const LiteflixProvider = ({ children }: { children: React.ReactNode }) => {
-  const [userMovies, addNewMovie] = useState<Array<Movie>>([]);
+  const [userMovies, setUserMovies] = useState<Array<Movie>>([]);
   const [popular, setPopular] = useState<Array<Movie>>([]);
   const [featured, setFeatured] = useState<Movie | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showNewMovieModal, setShowNewMovieModal] = useState(false);
+
+  const saveUserMovie = async({ picture, title }: NewMovieRequestPayload, updateProgress: (percent: number) => void, onErrorHandler: () => void) => {
+    const formData = new FormData();
+    formData.append('title', title)
+    formData.append('picture', picture);
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent: AxiosProgressEvent) => {
+          const total = progressEvent.total || progressEvent.loaded;
+          const percentageCompleted =
+            Math.round((progressEvent.loaded * 100) / total);
+            updateProgress(percentageCompleted);
+        },
+        onError: () => onErrorHandler()
+    };
+    const { data: { values: userMovies } } = await axios.post<NewMovieRequestPayload, { data: { values: Array<Movie> } }>(`http://localhost:5005/movie`, formData, config)
+    const _userMovies = userMovies.map((movie: Movie) => ({...movie, backdrop_path: `http://localhost:5005/uploads/${movie.backdrop_path}`}));
+    setUserMovies(_userMovies.length > 4 ? _userMovies.slice(-4, _userMovies.length) : _userMovies);
+  }
 
   useEffect(() => {
     const getMovies = async() => {
@@ -54,7 +77,7 @@ export const LiteflixProvider = ({ children }: { children: React.ReactNode }) =>
   }, []);
 
   return (
-    <LiteflixContext.Provider value={{ userMovies, addNewMovie, featured, isLoading, setIsLoading, popular, showNewMovieModal, setShowNewMovieModal }}>
+    <LiteflixContext.Provider value={{ userMovies, saveUserMovie, featured, isLoading, setIsLoading, popular, showNewMovieModal, setShowNewMovieModal }}>
       {children}
     </LiteflixContext.Provider>
   );

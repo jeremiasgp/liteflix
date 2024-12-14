@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
 import { upload } from './upload';
-import type { Movie } from 'liteflix-models';
+import cors from 'cors';
+import { type Movie } from 'liteflix-models';
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 5005;
 const DEFAULT_MOVIE_VALUES: Omit<Movie, 'title' | 'backdrop_path' | 'original_title' | 'id' | 'poster_path'> = {
   adult: false,
   genre_ids: [878, 28, 12],
@@ -17,6 +18,11 @@ const DEFAULT_MOVIE_VALUES: Omit<Movie, 'title' | 'backdrop_path' | 'original_ti
 };
 
 const values: Array<Movie> = [];
+
+app.use(cors({ origin: '*' }));
+app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(express.urlencoded());
+app.use(express.json()); 
 
 app.get('/', (req: Request, res: Response) => {
   res.send({ values });

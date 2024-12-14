@@ -16,7 +16,7 @@ enum MOVIE_OPTIONS {
 const Movies = () => {
   const [showMovies, setShowMovies] = useState<MOVIE_OPTIONS>(1);
   const [showOptionsPopup, setShowOptionsPopup] = useState(false);
-  const { popular } = useLiteflixContext();
+  const { popular, userMovies } = useLiteflixContext();
   const ref = useRef<any>(null);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Movies = () => {
       </div>}
     </div>
     <div className="Movies__items">
-      {popular.map(({ backdrop_path, id, title }: Movie) => {
+      {(showMovies === 1 ? popular : userMovies).map(({ backdrop_path, id, title }: Movie) => {
         return <AsyncBg key={id} className="Movies__item" bgUrl={backdrop_path}>
           <div tabIndex={0} className="Movies__item-play">
             <PlayIcon />

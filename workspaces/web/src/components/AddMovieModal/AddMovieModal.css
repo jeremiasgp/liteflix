@@ -31,9 +31,37 @@
 
 .btn {
   &__add-movie {
-    @apply w-[248px] h-[56px] box-border flex items-center justify-center text-[#242424] bg-white/[.5] text-[18px] leading-[21.6px] tracking-[4px] max-sm:mb-[24px];
+    @apply w-[248px] h-[56px] box-border flex items-center justify-center text-[#242424] bg-white/[.5] text-[18px] leading-[21.6px] tracking-[4px] max-sm:mb-[24px] opacity-100;
+    transition: opacity .5s ease-in-out 1s;
+    &:disabled {
+      @apply opacity-40 cursor-not-allowed;
+    }
   }
   &__close-modal {
     @apply w-[248px] h-[56px] box-border  flex sm:hidden items-center justify-center text-white bg-[#242424] border border-white/[.5] text-[18px] leading-[21.6px] tracking-[4px];
+  }
+}
+
+.UploadProgress {
+  &__wrapper {
+    @apply w-full flex flex-col gap-[16px] items-stretch;
+  }
+  &__error {
+    @apply self-start text-[14px] leading-[14px] tracking-[4px] font-[700];
+  }
+  &__bar {
+    @apply w-full h-[4px] relative block mt-[2px] bg-white/[.5];
+    &--error {
+      @apply absolute block top-[-2px] h-[8px] w-full bg-[#ff0000];
+    }
+    &--success {
+      @apply absolute block top-[-2px] h-[8px] bg-[#64eebc];
+    }
+  }
+  &__re-try {
+    @apply self-end text-[16px] leading-[16px] tracking-[4px] font-[700] cursor-pointer;
+  }
+  &__loading {
+    @apply self-start text-[14px] leading-[16.8px] tracking-[4px];
   }
 }
