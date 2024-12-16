@@ -16,7 +16,7 @@ const Layout = ({children}: Props) => {
 
   if(isLoading) {
     return <div className="Loading__wrapper">
-        {[...'CARGANDO'].map((letter: string) => (<span className="Loading__text--loading">{letter}</span>))}
+        {[...'CARGANDO'].map((letter: string, index) => (<span key={letter + index} className="Loading__text--loading">{letter}</span>))}
     </div>;
   }
 
