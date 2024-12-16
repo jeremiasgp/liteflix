@@ -20,12 +20,17 @@ const DEFAULT_MOVIE_VALUES: Omit<Movie, 'title' | 'backdrop_path' | 'original_ti
 
 const values: Array<Movie> = [];
 
+const uploadsDir = __dirname + '/uploads';
+
+if (!fs.existsSync(uploadsDir)){
+    fs.mkdirSync(uploadsDir);
+    fs.chmodSync(uploadsDir, 777);
+}
+
 app.use(cors({ origin: '*' }));
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use('/uploads', express.static(uploadsDir));
 app.use(express.urlencoded());
 app.use(express.json());
-
-fs.chmodSync(__dirname + '/uploads', 777)
 
 app.get('/', (req: Request, res: Response) => {
   res.send({ values });
