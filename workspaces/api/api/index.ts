@@ -45,3 +45,5 @@ app.post('/movie', upload.single('picture'), (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`API listening on port ${port}`);
 })
+
+export default app;
