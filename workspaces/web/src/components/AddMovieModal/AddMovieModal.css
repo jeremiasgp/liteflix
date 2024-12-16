@@ -7,6 +7,20 @@
     &-close {
       @apply absolute top-[24px] right-[24px] cursor-pointer max-sm:hidden;
     }
+    &--success {
+      @apply gap-[0];
+    }
+  }
+  &__success {
+    &-title {
+      @apply text-[34px] leading-[34px] tracking-[4px] text-[#64EEBC] mb-[72px];
+    }
+    &-congrats {
+      @apply text-[24px] leading-[26px] tracking-[4px] mb-[24px];
+    }
+    &-text {
+      @apply text-[20px] leading-[24px] tracking-[4px] mb-[92px];
+    }
   }
   &__title {
     @apply text-[20px] leading-[20px] tracking-[4px] text-[#64EEBC] font-[700] max-sm:mb-[72px];

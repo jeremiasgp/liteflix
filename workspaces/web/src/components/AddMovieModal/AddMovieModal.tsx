@@ -36,6 +36,7 @@ const AddMovieModal = () => {
   const [saving, setSaving] = useState(false);
   const [onError, setOnError] = useState(false);
   const [isDrag, setIsDrag] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const onErrorHandler = () => {
     setOnError(true);
@@ -77,9 +78,23 @@ const AddMovieModal = () => {
       setSaving(true);
       await saveUserMovie({ title, picture: file }, setUploadProgress, onErrorHandler);
       setSaving(false);
-      setShowNewMovieModal(false);
+      setShowSuccess(true);
     }
   };
+
+  if (showSuccess) {
+    return <div tabIndex={0} className="Add-movie__overlay">
+      <section className="Add-movie__modal Add-movie__modal--success">
+        <button type="button" tabIndex={0} className="Add-movie__modal-close" onClick={() => setShowNewMovieModal(false)}>
+          <CloseIcon />
+        </button>
+        <h1 className="Add-movie__success-title"><span className="font-[700]">LITE</span>FLIX</h1>
+        <h2 className="Add-movie__success-congrats">¡FELICITACIONES!</h2>
+        <p className="Add-movie__success-text">{title} FUE CORRECTAMENTE SUBIDA.</p>
+        <button type="button" onClick={() => setShowNewMovieModal(false) } className="btn__add-movie">IR A HOME</button>
+      </section>
+    </div>
+  }
 
   return <div tabIndex={0} className="Add-movie__overlay">
     <form className="Add-movie__modal" onSubmit={saveMovie}>
