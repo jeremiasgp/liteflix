@@ -24,7 +24,6 @@ const uploadsDir = __dirname + '/uploads';
 
 if (!fs.existsSync(uploadsDir)){
     fs.mkdirSync(uploadsDir);
-    fs.chmodSync(uploadsDir, 777);
 }
 
 app.use(cors({ origin: '*' }));
