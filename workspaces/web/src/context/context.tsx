@@ -36,6 +36,10 @@ export const LiteflixProvider = ({ children }: { children: React.ReactNode }) =>
   const [isLoading, setIsLoading] = useState(true);
   const [showNewMovieModal, setShowNewMovieModal] = useState(false);
 
+  const API_PATH = import.meta.env.VITE_API_PATH;
+
+  console.log('import.meta.env', import.meta.env)
+
   const saveUserMovie = async({ picture, title }: NewMovieRequestPayload, updateProgress: (percent: number) => void, onErrorHandler: () => void) => {
     const formData = new FormData();
     formData.append('title', title)
@@ -52,8 +56,8 @@ export const LiteflixProvider = ({ children }: { children: React.ReactNode }) =>
         },
         onError: () => onErrorHandler()
     };
-    const { data: { values: userMovies } } = await axios.post<NewMovieRequestPayload, { data: { values: Array<Movie> } }>(`http://localhost:5005/movie`, formData, config)
-    const _userMovies = userMovies.map((movie: Movie) => ({...movie, backdrop_path: `http://localhost:5005/uploads/${movie.backdrop_path}`}));
+    const { data: { values: userMovies } } = await axios.post<NewMovieRequestPayload, { data: { values: Array<Movie> } }>(`${API_PATH}/movie`, formData, config)
+    const _userMovies = userMovies.map((movie: Movie) => ({...movie, backdrop_path: `${API_PATH}/uploads/${movie.backdrop_path}`}));
     setUserMovies(_userMovies.length > 4 ? _userMovies.slice(-4, _userMovies.length) : _userMovies);
   }
 
