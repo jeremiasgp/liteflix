@@ -6,6 +6,7 @@ import TickIcon from "../icons/Tick.icon";
 import { useLiteflixContext } from "../../context/context";
 import { Movie } from "liteflix-models";
 import AsyncBg from "../AsyncBg/AsyncBg";
+import StarIcon from "../icons/Star.icon";
 
 enum MOVIE_OPTIONS {
   '',
@@ -49,8 +50,14 @@ const Movies = () => {
       </div>}
     </div>
     <div className="Movies__items">
-      {(showMovies === 1 ? popular : userMovies).map(({ backdrop_path, id, title }: Movie) => {
+      {(showMovies === 1 ? popular : userMovies).map(({ backdrop_path, id, title, vote_average, release_date }: Movie) => {
+        const release = new Date(release_date)
+        const year = release.getFullYear()
         return <AsyncBg key={id} className="Movies__item" bgUrl={backdrop_path}>
+          <div className="Movies__item-info">
+            <span className="flex gap-[6px]"><StarIcon />{vote_average}</span>
+            <span>{year}</span>
+          </div>
           <div tabIndex={0} className="Movies__item-play">
             <PlayIcon />
           </div>

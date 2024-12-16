@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './AsyncBg.css';
 
 type Props = {
   className: string,
@@ -18,7 +19,11 @@ const AsyncBg = ({className, bgUrl, children}: Props) => {
     };
   }, [bgUrl]);
 
-  return <div className={`${className}`} style={{ backgroundImage: `url(${bgImage})` }}>{children}</div>;
+  return <div className={`${className} ${bgImage ? '' : 'AsyncBg__loader'}`} style={{ backgroundImage: `url(${bgImage})` }}>
+      <div className={`${bgImage ? 'AsyncBg__filter' : ''}`}>
+        {children}
+      </div>
+    </div>;
 };
 
 export default AsyncBg;

@@ -1,0 +1,33 @@
+.AsyncBg {
+  &__loader {
+    animation: bg-loader 1.25s linear infinite;
+    background: #242424;
+    background: linear-gradient(to right, #242424 2%, rgba(100, 238, 188, .08) 30%, #242424 95%);
+    background-size: 50% 100%;
+  }
+  &__filter {
+    @apply w-full h-full;
+    
+    animation: bg-filter 1.66s ease-out;
+  }
+}
+
+@keyframes bg-loader {
+  0% {
+      background-position: -50% 0
+  }
+  100% {
+      background-position: 50% 0
+  }
+}
+
+@keyframes bg-filter {
+  0% {
+    backdrop-filter: blur(10px);
+  }
+  100% {
+    backdrop-filter: blur(0);
+  }
+}
+
+

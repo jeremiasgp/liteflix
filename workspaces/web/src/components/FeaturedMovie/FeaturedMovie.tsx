@@ -14,9 +14,13 @@ const FeaturedMovie = () => {
       <h1 className="FeaturedMovie__title">{featured?.title || ''}</h1>
       <div className="FeaturedMovie__actions">
         <button className="btn__play">
-          REPRODUCIR
+          <span>REPRODUCIR</span>
         </button>
         <button className="btn__my-list">
+        <svg width="248px" height="56px" viewBox="0 0 248 56" className="svg-border">
+          <polyline points="247,1 247,55 1,55 1,1 247,1" />
+          <polyline points="247,1 247,55 1,55 1,1 247,1" />
+        </svg>
           <PlusIcon /><span className="inline-block ml-[12px]">MI LISTA</span>
         </button>
       </div>

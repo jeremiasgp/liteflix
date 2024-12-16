@@ -32,8 +32,40 @@
       }
     }
 
-    &-title {
-      @apply absolute block w-full bottom-[32px] sm:bottom-[14px] text-[16px] leading-[16px] tracking-[4px] font-[400] text-center;
+    &-info {
+      @apply absolute top-[0] left-[0] w-full h-full bg-[#242424]/[.7] opacity-0 box-border p-[16px] flex items-end justify-between text-[14px] leading-[12px] tracking-[2px];
     }
+
+    &-title {
+      @apply absolute block w-full top-[116px] left-[0] sm:bottom-[14px] text-[16px] leading-[16px] tracking-[4px] font-[400] text-center;
+    }
+    &:hover {
+      .Movies__item-info {
+        @apply opacity-100 transition-opacity;
+      }
+      .Movies__item-play {
+        @apply top-[73px] left-[16px] w-[24px] h-[24px] ml-[0];
+        transition: top .6s ease-out .3s,
+        left .6s ease-out .3s,
+        margin-left 0.1s,
+        width .3s ease-out,
+        height .3s ease-out;
+      }
+      .Movies__item-title {
+        @apply top-[79px] left-[52px] w-auto;
+        animation: hide-n-show .8s ease-out;
+      }
+    }
+  }
+}
+@keyframes hide-n-show {
+  0% {
+    opacity:0;
+  }
+  75% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
   }
 }

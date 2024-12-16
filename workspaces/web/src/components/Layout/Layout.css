@@ -18,6 +18,10 @@
     @apply text-[18px] leading-[18px] tracking-[4px] font-[400] flex items-center;
     @apply max-sm:border max-sm:border-[#fff] max-sm:rounded-[50%] max-sm:w-[36px] max-sm:h-[36px] max-sm:flex max-sm:items-center max-sm:justify-center;
     @apply sm:grow-0 sm:shrink-0 sm:ml-[64px];
+    transition: letter-spacing .5s ease-in-out;
+    &:hover {
+      @apply tracking-[8px];
+    }
   }
   &__user-actions {
     @apply flex justify-end gap-[40px] sm:w-full sm:grow sm:shrink;
@@ -27,5 +31,50 @@
     &--hidden-mobile {
       @apply  max-sm:hidden;
     }
+  }
+}
+
+.Loading {
+  &__wrapper {
+    @apply flex items-center justify-center text-white text-[32px] w-screen h-screen bg-[#242424];
+  }
+  &__text {
+    &--loading {
+      animation: loading .7s infinite alternate;
+      &:nth-child(1) {
+        animation-delay: .1s;
+      }
+      &:nth-child(2) {
+        animation-delay: .2s;
+      }
+      &:nth-child(3) {
+        animation-delay: .3s;
+      }
+      &:nth-child(4) {
+        animation-delay: .4s;
+      }
+      &:nth-child(5) {
+        animation-delay: .5s;
+      }
+      &:nth-child(6) {
+        animation-delay: .6s;
+      }
+      &:nth-child(7) {
+        animation-delay: .7s;
+      }
+      &:nth-child(8) {
+        animation-delay: .8s;
+      }
+    }
+  }
+
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(.85);
   }
 }

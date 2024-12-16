@@ -5,10 +5,12 @@
     min-height: calc(100vh - 52px - 64px);
   }
   &__original {
-    @apply block mb-[16px] sm:mb-[24px] text-[20px] leading-[20px] sm:leading-[24px] tracking-[4px] font-[400];
+    @apply block mb-[16px] sm:mb-[24px] text-[20px] leading-[20px] sm:leading-[24px] tracking-[4px] font-[400] overflow-hidden;
+    animation: original-enters .6s ease-in;
   }
   &__title {
     @apply block mb-[16px] sm:mb-[32px] text-[76px] leading-[77.5px] tracking-[12px] sm:text-[120px] sm:leading-[100px] sm:tracking-[16px] font-[700] text-[#64EEBC] max-sm:text-center;
+    animation: title-enters .7s ease-in-out;
   }
   &__actions {
     @apply flex max-sm:flex-col max-sm:items-center justify-start gap-[24px];
@@ -17,9 +19,121 @@
 
 .btn {
   &__play {
-    @apply w-[248px] h-[56px] flex justify-center items-center bg-[#242424] border border-[#242424] text-white text-[18px] font-[400] tracking-[4px] leading-[21.6px];
+    @apply w-[248px] h-[56px] relative flex justify-center items-center border-0 border-[#242424] text-white text-[18px] font-[400] tracking-[4px] leading-[21.6px];
+    transition: letter-spacing .5s ease-in-out;
+    background: linear-gradient(#242424 0%, #242424 100%);
+    background-size: 248px 56px;
+    background-repeat: no-repeat;
+    animation: play-button-starts .9s ease-out;
+    &::before {
+      content: '';
+      @apply w-full h-full absolute top-[0] left-[0] border-b-[2px] border-b-white/[.5];
+      transform: scale(0, 1);
+      transition: all .4s;
+    }
+    &:hover {
+      @apply tracking-[8px];
+      &::before {
+        transform: scale(1, 1);
+      }
+    }
+    & > span {
+      animation: play-test-shows 1.6s linear;
+    }
   }
   &__my-list {
-    @apply w-[248px] h-[56px] flex justify-center items-center bg-[#242424]/[.5] border border-white/[.5] text-white text-[18px] font-[400] tracking-[4px] leading-[21.6px];
+    @apply w-[248px] h-[56px] relative flex justify-center items-center bg-[#242424]/[.5] border border-white/[.5] text-white text-[18px] font-[400] tracking-[4px] leading-[21.6px];
+    transition: letter-spacing .5s ease-in-out;
+    animation: my-list-shows 1.2s ease-out;
+    & > .svg-border {
+      @apply absolute top-[0] left-[0];
+      fill: none;
+      stroke: #fff;
+      stroke-dasharray: 150 600;
+      stroke-dashoffset: 150;
+      transition: 1s ease-in-out;
+      animation: border-stroke 2s ease-in-out;
+    }
+    &:hover {
+      @apply tracking-[8px];
+    }
+  }
+}
+
+@keyframes border-stroke {
+  0% {
+    stroke-dashoffset: 150;
+  }
+  50% {
+    stroke-dashoffset: 150;
+  }
+  100% {
+    stroke-dashoffset: -600;
+  }
+}
+
+@keyframes my-list-shows {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes button-init {
+  0% {
+    letter-spacing: 4px;
+  }
+  100% {
+    letter-spacing: 8px;
+  }
+}
+
+@keyframes title-enters {
+  0% {
+    opacity: 0;
+    letter-spacing: -44px;
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: 16px;
+  }
+}
+
+@keyframes original-enters {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  60% {
+    height: 20px;
+  }
+  100% {
+    opacity: 1;
+    height: 20px;
+  }
+}
+
+@keyframes play-button-starts {
+  0% {
+    background-position: -248px;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+@keyframes play-test-shows {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

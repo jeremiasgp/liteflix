@@ -15,7 +15,9 @@ const Layout = ({children}: Props) => {
   const { featured, isLoading, showNewMovieModal, setShowNewMovieModal } = useLiteflixContext();
 
   if(isLoading) {
-    return <div className="flex items-center justify-center text-white text-4 w-screen h-screen bg-[#242424]">LOADING</div>;
+    return <div className="Loading__wrapper">
+        {[...'CARGANDO'].map((letter: string) => (<span className="Loading__text--loading">{letter}</span>))}
+    </div>;
   }
 
   const bgMovieClasses = !isLoading ? `bg-no-repeat bg-[length:auto_80vh] bg-[center_top] sm:bg-cover` : '';
