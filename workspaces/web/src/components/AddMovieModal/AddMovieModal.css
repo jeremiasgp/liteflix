@@ -13,10 +13,13 @@
   }
   &__file {
     &-label {
-      @apply self-stretch flex items-center justify-center gap-[16px] h-[100px] border border-dashed border-[#fff] relative max-sm:mb-[56px];
+      @apply self-stretch flex items-center justify-center gap-[16px] h-[100px] border border-dashed border-[#fff] relative max-sm:mb-[56px] box-border px-[16px];
     }
     &-text {
       @apply text-[16px] leading-[19.2px] tracking-[4px];
+    }
+    &-info {
+      @apply flex justify-between items-center gap-[24px] text-[16px] leading-[19.2px] tracking-[4px];
     }
     &-input {
       @apply absolute top-[0] left-[0] z-[99] w-[1px] h-[1px];

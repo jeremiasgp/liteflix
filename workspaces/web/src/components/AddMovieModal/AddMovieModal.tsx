@@ -35,13 +35,44 @@ const AddMovieModal = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [saving, setSaving] = useState(false);
   const [onError, setOnError] = useState(false);
+  const [isDrag, setIsDrag] = useState(false);
 
   const onErrorHandler = () => {
     setOnError(true);
   }
 
+  const handleDrag = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setIsDrag(true)
+    } else if (e.type === 'dragleave') {
+      setIsDrag(false)
+    }
+  }
+  
+  const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDrag(false)
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFiles(e.dataTransfer.files)
+    }
+  }
+  
+  const handleFiles = ([file]: FileList) => {
+    setFile(file)
+  }
+
+  const removeFile = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    setFile(undefined);
+  }
+
   const saveMovie = async (e?: React.FormEvent<HTMLFormElement>) => {
-    e && e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     if (file && title) {
       setSaving(true);
       await saveUserMovie({ title, picture: file }, setUploadProgress, onErrorHandler);
@@ -57,15 +88,29 @@ const AddMovieModal = () => {
       </button>
       <h2 className="Add-movie__title">AGREGAR PELÍCULA</h2>
       {saving ? (<UploadProgress uploadProgress={uploadProgress} error={onError} onReTry={saveMovie} />) : 
-        (<label className="Add-movie__file-label">
+        (<label
+          onDragEnter={handleDrag}
+          onDragLeave={handleDrag}
+          onDragOver={handleDrag}
+          onDrop={handleDrop}
+          className={`Add-movie__file-label ${isDrag ? 'bg-white/[.3]' : ''}`}
+          >
           <ClipIcon />
-          <span className="Add-movie__file-text">
-            AGREGÁ UN ARCHIVO <span className="max-sm:hidden">O ARRASTRALO Y SOLTALO AQUÍ</span>
-          </span>
+          {file ? (
+            <div className="Add-movie__file-info">
+              <span className="text-[#64eebc]">ARCHIVO: {file?.name}</span>
+              <button className="font-[700] cursor-pointer text-[#ff0000]" onClick={removeFile}>REMOVER</button>
+            </div>
+            ) : (
+            <span className="Add-movie__file-text">
+              AGREGÁ UN ARCHIVO <span className="max-sm:hidden">O ARRASTRALO Y SOLTALO AQUÍ</span>
+            </span>
+          ) }
           <input
             type="file"
             name="file"
             className="Add-movie__file-input"
+            accept=".png, .jpg, .jpeg"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => e.target.files && setFile(e.target.files[0])}
             />
         </label>)

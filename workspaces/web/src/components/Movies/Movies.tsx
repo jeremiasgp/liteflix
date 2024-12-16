@@ -17,11 +17,11 @@ const Movies = () => {
   const [showMovies, setShowMovies] = useState<MOVIE_OPTIONS>(1);
   const [showOptionsPopup, setShowOptionsPopup] = useState(false);
   const { popular, userMovies } = useLiteflixContext();
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
         setShowOptionsPopup(false);
       }
     };
