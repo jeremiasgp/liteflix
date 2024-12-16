@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { upload } from './upload';
 import cors from 'cors';
 import { type Movie } from 'liteflix-models';
+import fs from 'fs';
 
 const app = express();
 const port = 5005;
@@ -22,7 +23,9 @@ const values: Array<Movie> = [];
 app.use(cors({ origin: '*' }));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(express.urlencoded());
-app.use(express.json()); 
+app.use(express.json());
+
+fs.chmodSync(__dirname + '/uploads', 777)
 
 app.get('/', (req: Request, res: Response) => {
   res.send({ values });
