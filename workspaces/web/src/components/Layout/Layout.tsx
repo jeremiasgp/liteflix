@@ -26,7 +26,7 @@ const Layout = ({children}: Props) => {
   <div className='Layout__container'>
   <header className="Layout__header">
     <section className="Layout__header-actions">
-      <h1 tabIndex={0} className="Layout__logo max-sm:order-2 max-sm:relative max-sm:z-[101]"><span className="!font-[700]">LITE</span>FLIX</h1>
+      <h1 tabIndex={0} onClick={() => setShowNewMovieModal(false)} className="Layout__logo max-sm:order-2 max-sm:relative max-sm:z-[101]"><span className="!font-[700]">LITE</span>FLIX</h1>
       <button className="Layout__add-movie max-sm:order-1" onClick={setShowNewMovieModal.bind(null, true)}><PlusIcon /><span className="inline-block ml-[12px] hidden sm:inline-block">Agregar pelicula</span></button>
       <div className="Layout__user-actions max-sm:order-last">
         <span tabIndex={0} className="Layout__user-action Layout__user-action--hidden-mobile"><HamburgerIcon /></span>

@@ -13,13 +13,13 @@
   }
   &__success {
     &-title {
-      @apply text-[34px] leading-[34px] tracking-[4px] text-[#64EEBC] mb-[72px];
+      @apply text-[34px] leading-[34px] tracking-[4px] text-[#64EEBC] mb-[72px] max-sm:hidden;
     }
     &-congrats {
-      @apply text-[24px] leading-[26px] tracking-[4px] mb-[24px];
+      @apply text-[24px] leading-[26px] tracking-[4px] mb-[32px] sm:mb-[24px];
     }
     &-text {
-      @apply text-[20px] leading-[24px] tracking-[4px] mb-[92px];
+      @apply text-[20px] leading-[24px] tracking-[4px] mb-[133px] sm:mb-[92px];
     }
   }
   &__title {
