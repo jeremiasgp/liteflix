@@ -36,8 +36,6 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.post('/movie', upload.single('picture'), (req: Request, res: Response) => {
-  console.log('uploadsDir', uploadsDir)
-  console.log('File Uploaded', req.file);
   const picture = req.file?.filename  || '';
   const movie: Movie = {
     ...DEFAULT_MOVIE_VALUES,

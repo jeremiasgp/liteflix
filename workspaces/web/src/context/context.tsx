@@ -38,8 +38,6 @@ export const LiteflixProvider = ({ children }: { children: React.ReactNode }) =>
 
   const API_PATH = import.meta.env.VITE_API_PATH;
 
-  console.log('import.meta.env', import.meta.env)
-
   const saveUserMovie = async({ picture, title }: NewMovieRequestPayload, updateProgress: (percent: number) => void, onErrorHandler: () => void) => {
     const formData = new FormData();
     formData.append('title', title)
