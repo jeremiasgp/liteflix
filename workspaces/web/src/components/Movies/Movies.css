@@ -50,6 +50,14 @@
         margin-left 0.1s,
         width .3s ease-out,
         height .3s ease-out;
+
+        &:hover {
+          @apply border-[#242424] text-[#242424] bg-[#64EEBC];
+        }
+        & > svg {
+          @apply w-[9.6px] h-[9.6px];
+          fill: #242424;
+        }
       }
       .Movies__item-title {
         @apply top-[79px] left-[52px] w-auto;
