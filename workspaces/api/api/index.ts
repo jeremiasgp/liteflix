@@ -20,7 +20,7 @@ const DEFAULT_MOVIE_VALUES: Omit<Movie, 'title' | 'backdrop_path' | 'original_ti
 
 const values: Array<Movie> = [];
 
-const uploadsDir = __dirname + '/uploads';
+const uploadsDir = './api/uploads/';
 
 if (!fs.existsSync(uploadsDir)){
     fs.mkdirSync(uploadsDir);
