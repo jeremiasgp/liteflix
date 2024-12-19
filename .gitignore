@@ -1,3 +1,4 @@
 node_modules
-workspaces/api/src/uploads/*
+workspaces/api/api/uploads/*
 .vercel
+.env.local

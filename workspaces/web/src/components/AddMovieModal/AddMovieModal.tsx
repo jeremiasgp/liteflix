@@ -62,7 +62,10 @@ const AddMovieModal = () => {
   }
   
   const handleFiles = ([file]: FileList) => {
-    setFile(file)
+    if(['image/jpeg', 'image/png'].includes(file.type)){
+      setFile(file)
+    }
+    return;    
   }
 
   const removeFile = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

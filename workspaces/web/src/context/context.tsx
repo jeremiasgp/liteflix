@@ -28,16 +28,14 @@ const initialCOntextValues: LiteflixContextModel = {
 
 const LiteflixContext = createContext<LiteflixContextModel>(initialCOntextValues);
 
-
 export const LiteflixProvider = ({ children }: { children: React.ReactNode }) => {
   const [userMovies, setUserMovies] = useState<Array<Movie>>([]);
   const [popular, setPopular] = useState<Array<Movie>>([]);
   const [featured, setFeatured] = useState<Movie | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showNewMovieModal, setShowNewMovieModal] = useState(false);
-
   const API_PATH = import.meta.env.VITE_API_PATH;
-
+  
   const saveUserMovie = async({ picture, title }: NewMovieRequestPayload, updateProgress: (percent: number) => void, onErrorHandler: () => void) => {
     const formData = new FormData();
     formData.append('title', title)
@@ -57,12 +55,12 @@ export const LiteflixProvider = ({ children }: { children: React.ReactNode }) =>
     const { data: { values: userMovies } } = await axios.post<NewMovieRequestPayload, { data: { values: Array<Movie> } }>(`${API_PATH}/movie`, formData, config)
     const _userMovies = userMovies.map((movie: Movie) => ({...movie, backdrop_path: `${API_PATH}/uploads/${movie.backdrop_path}`}));
     setUserMovies(_userMovies.length > 4 ? _userMovies.slice(-4, _userMovies.length) : _userMovies);
-  }
+  };
 
   useEffect(() => {
     const getMovies = async() => {
       setIsLoading(true);
-      const [{ data: { results: featuredMovies }}, { data: { results: popularMovies }}] = await Promise.all([
+      const [{ data: { results: featuredMovies }}, { data: { results: popularMovies }} ] = await Promise.all([
         axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20'),
         axios.get('https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20')
       ]);
@@ -72,10 +70,23 @@ export const LiteflixProvider = ({ children }: { children: React.ReactNode }) =>
 
       const _popular = popularMovies.map((movie: Movie) => ({...movie, backdrop_path: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}));
       setPopular(_popular.slice(0, 4));
-      
+
       setIsLoading(false);
     };
     getMovies();
+  }, []);
+
+  useEffect(() => {
+    const getUserMovies = async() => {
+      setIsLoading(true);
+      const {data: { values: userMovies }} = await axios.get(`${API_PATH}`);
+      const parseUserMovies = (userMovies: Array<Movie>) => userMovies.map((movie: Movie) => ({...movie, backdrop_path: `${API_PATH}/uploads/${movie.backdrop_path}`}));
+
+      const _userMovies = parseUserMovies(userMovies);
+      setUserMovies(_userMovies);
+      setIsLoading(false);
+    }
+    getUserMovies();
   }, []);
 
   return (
